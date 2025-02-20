@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.pdf-mode * {
+  color: black !important;
+}
+
+/* Torna a div invisível por padrão */
+.pdf-only {
+  display: none;
+}
+
+/* Quando a geração do PDF está em andamento, a div se torna visível */
+.pdf-mode .pdf-only {
+  display: block;
+}
