@@ -19,7 +19,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(""); // Para armazenar mensagens de erro
   const router = useRouter();
-  console.log("API Key: ", process.env.OPENAI_API_KEY);
+  
 
 
   // ✅ Recupera a empresa apenas quando o componente é montado (evita erro no Next.js)
