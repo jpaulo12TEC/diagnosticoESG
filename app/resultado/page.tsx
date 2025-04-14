@@ -426,7 +426,7 @@ const percentual = ((totalSum / valorTotalMaximo) * 100).toFixed(1);
     const encodedMessage = encodeURIComponent(message);
 
     // Construção do link para WhatsApp com a mensagem codificada
-    const whatsappLink = `https://wa.me/5579998870125?text=${encodedMessage}`;
+    const whatsappLink = `https://wa.me/5579998092012?text=${encodedMessage}`;
 
     // Redirecionar para o WhatsApp
     window.open(whatsappLink, '_blank');
