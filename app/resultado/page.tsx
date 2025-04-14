@@ -550,7 +550,7 @@ const percentual = ((totalSum / valorTotalMaximo) * 100).toFixed(1);
     </div>
 
     {/* Análise ocupa toda a largura */}
-    <div className="w-full p-4 bg-white mt-0">
+     <div className="w-full p-4 bg-white mt-0">
       <h3 className="text-3xl text-left font-montserrat text-gray-700 mb-10 mt-1">ANÁLISE DAS RESPOSTAS</h3>
       <p className="text-gray-500 text-justify font-montserrat text-xl  leading-loose">{chatGptResponse2}</p>
       <p className="text-gray-500 text-justify font-montserrat text-xl  leading-loose mt-10">Segue abaixo o gráfico com as respostas para cada pergunta e sua pontuação:</p>
@@ -666,7 +666,7 @@ const percentual = ((totalSum / valorTotalMaximo) * 100).toFixed(1);
 
     {/* Div direita - Formulário */}
     <div className="w-full sm:w-2/5 p-8 sm:p-12 text-center h-full bg-white rounded-lg shadow-xl">
-  <h3 className="text-2xl font-semibold mb-8 text-gray-800 font-montserrat">Fale com um Consultor</h3>
+  <h3 className="text-2xl font-semibold mb-8 text-gray-800 font-montserrat">Fale com nossa equipe de consultores</h3>
   <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center space-y-6">
     <div className="w-full max-w-md">
       <input 

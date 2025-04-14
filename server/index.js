@@ -6,7 +6,7 @@ const cors = require("cors"); // Importando o pacote cors
 dotenv.config(); // Carrega variáveis de ambiente
 
 const app = express();
-const port = 3000;
+const port = 10000;
 
 // Usando o CORS para permitir requisições do frontend
 app.use(cors()); // Permite requisições de outros domínios

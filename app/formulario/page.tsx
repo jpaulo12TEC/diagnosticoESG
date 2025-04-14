@@ -180,13 +180,13 @@ export default function Formulario() {
     
     switch(group) {
       case "Ambiental":
-        return " bg-[#C8FBA8] text-black";
+        return " bg-[#C8FBA8]";
       case "Social":
-        return "bg-[#FFD696] text-black";
+        return "bg-[#FFD696]";
       case "Governança":
-        return "bg-[#B0CDE8] text-black";
+        return "bg-[#B0CDE8]";
       default:
-        return "bg-gray-300 text-black"; // Cor padrão
+        return "bg-gray-300"; // Cor padrão
     }
     
   }
@@ -369,7 +369,7 @@ const generateReport = async (answers: string[], questions: { question: string }
   
         {/* Se for a "capa" do grupo, exibe a imagem */}
         {isGroupCover ? (
-          <div className="p-1 rounded-lg w-full max-w-[1200px] sm:max-h-[800px] h-auto flex flex-col gap-10 items-center justify-between relative">
+          <div className="p-1 rounded-lg w-full max-w-[1200px] sm:max-h-[800px] h-full flex flex-col gap-10 items-center justify-between relative">
             <img
               src={welcomeImage}
               alt="Imagem de boas-vindas do grupo"
@@ -377,7 +377,7 @@ const generateReport = async (answers: string[], questions: { question: string }
             />
             <button
               onClick={handleNext}
-              className="bg-gray text-black font-bold px-12 py-2 rounded-md border border-gray-300 transition-all duration-150 hover:bg-gray-200 active:transform active:scale-95 w-[300px]"
+              className="bg-gray-900 text-white font-bold px-12 py-2 rounded-md border border-gray-300 transition-all duration-150 hover:bg-gray-700 active:transform active:scale-95 w-[300px]"
             >
               Iniciar Perguntas
             </button>
@@ -385,12 +385,12 @@ const generateReport = async (answers: string[], questions: { question: string }
         ) : (
           // Se não for a "capa", exibe a pergunta
           <div
-            className={`p-1 rounded-lg font-montserrat w-full max-w-[1200px] sm:max-h-[800px] h-auto flex flex-col gap-0 items-center overflow-y-auto justify-between relative ${groupBackgroundColors[currentGroup]}`}
+            className={`p-1 rounded-lg font-montserrat w-full max-w-[1200px]  sm:max-h-[800px] flex flex-col gap-0 items-center justify-between relative ${groupBackgroundColors[currentGroup]}`}
             style={{
               boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.2)',
               border: '2px solid rgba(0, 0, 0, 0.1)',
-              maxHeight: '75vh',
               zIndex: 1,
+              marginTop: 100,
             }}
           >
           <h1 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl font-montserrat text-white mb-4 mt-4 text-center">
@@ -398,15 +398,15 @@ const generateReport = async (answers: string[], questions: { question: string }
           </h1>
   
             {/* Exibindo as opções de resposta sem espaçamento entre elas */}
-            <div className="w-full space-y-2">
+            <div className="w-full  space-y-2">
               {questions[currentQuestion].options.map((option, index) => (
                 <label key={index} className="w-full cursor-pointer">
                   <div
                     onClick={() => handleAnswer(index)}
-                    className={`w-full p-4 border-2 rounded-2g text-center transition-all duration-300 ${
+                    className={`w-full p-4 border-2 h-auto rounded-2g text-center transition-all duration-300 text-base font-montserrat border-gray-300 ${
                       answers[currentQuestion] === questions[currentQuestion].values[index]
-                        ? getBackgroundColorForGroup(questions[currentQuestion].group) // Função que aplica a cor de acordo com o grupo
-                        : 'bg-white text-black text-sm sm:text-base md:text-base lg:text-base xl:text-base font-montserrat border-gray-300'
+                        ? getBackgroundColorForGroup(questions[currentQuestion].group) // Aplica a cor do grupo selecionado
+                        : 'bg-white text-black'
                     }`}
                   >
                     {option}
@@ -421,7 +421,10 @@ const generateReport = async (answers: string[], questions: { question: string }
                   />
                 </label>
               ))}
+
+              
             </div>
+
           </div>
         )}
   
@@ -429,7 +432,7 @@ const generateReport = async (answers: string[], questions: { question: string }
         {!isGroupCover && (  // Botão de "Próxima" só aparece se não for a capa
           <button
             onClick={handleNext}
-            className="bg-gray text-black font-bold px-12 py-2 rounded-md border border-gray-300 transition-all duration-150 hover:bg-gray-200 active:transform active:scale-95 w-[300px]"
+            className="bg-gray-900 text-white font-bold px-12 py-2 rounded-md border border-gray-300 transition-all duration-150 hover:bg-gray-700 active:transform active:scale-95 w-[300px]"
           >
             {currentQuestion < questions.length - 1 ? 'Próxima' : 'Finalizar'}
           </button>
