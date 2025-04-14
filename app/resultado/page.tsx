@@ -420,7 +420,7 @@ const percentual = ((totalSum / valorTotalMaximo) * 100).toFixed(1);
     e.preventDefault();
 
     // Mensagem formatada
-    const message = `Olá, meu nome é ${name} e sou da empresa ${company}.`;
+    const message = `Olá, meu nome é ${name} e sou da empresa ${company}. Acabei de fazer o Autodiagnósitco ESG Express. Quais os próximos passos?`;
 
     // Codificar a mensagem para garantir que espaços e caracteres especiais funcionem na URL
     const encodedMessage = encodeURIComponent(message);
