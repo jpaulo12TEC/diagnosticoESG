@@ -19,7 +19,10 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(""); // Para armazenar mensagens de erro
   const router = useRouter();
+  const [showIntro, setShowIntro] = useState(true);
   
+
+
 
 
   // ✅ Recupera a empresa apenas quando o componente é montado (evita erro no Next.js)
@@ -96,94 +99,262 @@ export default function Home() {
     }
   };
 
+
+
+
+
+
+  const carrosselItens = [
+    {
+      id: 1,
+      titulo: "Transforme seu ESG",
+      descricao: "Soluções tecnológicas sob medida para evoluir seu desempenho ambiental, social e de governança.",
+      imagem: "/carrossel1.jpg",
+    },
+    {
+      id: 2,
+      titulo: "Consultoria Especializada",
+      descricao: "Especialistas que guiam sua empresa nas práticas mais avançadas de ESG.",
+      imagem: "/carrossel2.jpg",
+    },
+    {
+      id: 3,
+      titulo: "Resultados Reais",
+      descricao: "Acompanhamento de indicadores para demonstrar e potencializar resultados sustentáveis.",
+      imagem: "/carrossel3.jpg",
+    },
+  ];
+
+  const [indiceAtual, setIndiceAtual] = useState(0);
+
+const mudarSlide = (index: number) => {
+  setIndiceAtual(index);
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   return (
+
+
+    
 <div
-className="min-h-screen flex flex-col items-center justify-center pt-20 sm:pt-0 p-0 space-y-4 sm:space-y-2 lg:space-y-5"
-style={{ backgroundImage: "url('/PapeldeparedeESG.jpg')" }}
+className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  flex flex-col items-center justify-start pt-20 sm:pt-0 p-0 space-y-10 sm:space-y-2 lg:space-y-5"
+
 >
+
 <Header /> {/* Usando o Header */}
 
-{/* Container Principal */}
-<div className="bg-white p-1 rounded-lg shadow-lg w-full max-w-[1200px] sm:max-h-[800px] h-auto flex flex-col lg:flex-row gap-10 items-center overflow-y-auto justify-between relative">
-  
-  {/* Linha Separadora */}
-<div className="lg:hidden md:block absolute left-0 right-0 top-1/2 w-full h-[3px] bg-gray-500"></div>
-<div className="lg:block hidden absolute left-1/2 top-0 bottom-0 w-[3px] bg-gray-300"></div>
+{showIntro && (
+  <div className="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center p-4 animate-fade-in">
+    <div className="bg-white w-full max-w-4xl rounded-3xl shadow-2xl grid md:grid-cols-2 overflow-hidden relative">
 
+      {/* Lado esquerdo: texto promocional ESG */}
+      <div className="bg-gradient-to-br from-emerald-100 via-white to-white p-10 flex flex-col justify-center">
+        <h2 className="text-3xl font-bold text-emerald-900 mb-4 leading-snug">
+          Transforme sua Gestão Documental<br />em Vantagem Competitiva ESG
+        </h2>
+        <p className="text-gray-700 text-base leading-relaxed mb-4">
+          Uma má organização de documentos pode prejudicar seus indicadores ambientais, sociais e de governança. Com uma gestão eficaz, você fortalece a transparência e a credibilidade da sua empresa.
+        </p>
+        <p className="text-gray-700 text-base">
+          Converse com um especialista e descubra como sua empresa pode avançar.
+        </p>
+      </div>
 
-<div className="flex flex-col items-start w-full lg:w-1/2 gap-10 sm:gap-20 object-contain h-full sm:border-l-4 sm:border-gray-500 sm:rounded-l-lg p-4">
-  <div className="flex-1 text-xl font-montserrat font-bold text-black mt-0">
-    Descubra o Nível ESG da Sua Empresa
+      {/* Lado direito: botão de ação */}
+      <div className="bg-emerald-800 p-10 flex flex-col items-center justify-center text-center text-white">
+        <h3 className="text-xl font-semibold mb-6">Vamos conversar?</h3>
+        <a
+          href="https://wa.me/5599999999999?text=Olá!%20Tenho%20interesse%20em%20melhorar%20meu%20índice%20ESG%20com%20gestão%20documental."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 bg-white text-emerald-800 px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-100 transition"
+          onClick={() => setShowIntro(false)}
+        >
+          <img src="/whatsapp-icon.svg" alt="WhatsApp" className="w-6 h-6" />
+          Falar no WhatsApp
+        </a>
+      </div>
+
+      {/* Botão de fechar flutuante */}
+      <button
+        onClick={() => setShowIntro(false)}
+        className="absolute top-3 right-3 text-gray-500 hover:text-red-600 text-3xl font-light"
+        aria-label="Fechar"
+      >
+        &times;
+      </button>
+    </div>
   </div>
-  <p className="flex-1 text-gray-700 font-montserrat text-sm mt-1 leading-relaxed"> 
-    Nosso Autodiagnóstico ESG é rápido e eficaz! Com apenas 12 perguntas, distribuídas nos pilares Ambiental, Social e Governança, você terá um panorama claro sobre a maturidade ESG da sua empresa. Ao final, um relatório personalizado indicará oportunidades de melhoria e próximos passos.
+)}
+
+
+
+{/* Container Principal */}
+{/* Container Principal */}
+<div className="flex flex-col-reverse lg:flex-row w-full max-w-[1400px] mx-auto px-4  py-20  gap-10 flex-grow-0">
+  {/* Lado Esquerdo - Texto e Serviços */}
+  <div className="lg:w-1/2 mt-20">
+  <h1 className="text-3xl tracking-wide sm:text-4xl lg:text-5xl font-montserrat font-normal text-green-900 leading-tight tracking-wider">
+    12TEC Solutions  oferece <br />
+    <span className="font-black">Consultoria</span> avançada, <br />
+    forte e estratégica <br />
+    em <span className="font-black">ESG</span>
+  </h1>
+  <p className="mt-4 text-gray-600 text-lg">
+    Guiando decisões inteligentes para um futuro de sucesso e crescimento empresarial
   </p>
-  <p className="font-montserrat flex-1 text-gray-700 text-sm mt-2 mb-5 sm:mb-10">
-    Preencha as informações para iniciar.
-  </p>
-</div>
 
+    {/* Serviços */}
+    <div className="w-full mt-10 p-6">
+      <div className="flex items-center mb-8">
+        <div className="flex-grow h-px bg-gray-300"></div>
+        <h2 className="px-4 text-2xl font-semibold text-gray-700 whitespace-nowrap">
+          Nossos serviços
+        </h2>
+        <div className="flex-grow h-px bg-gray-300"></div>
+      </div>
 
-  {/* Direita: Formulário */}
-  <div className="flex flex-col w-full lg:w-1/2 gap-1 px-1">
-    
-  <img 
-    src="12teclogo.svg" 
-    alt="Descrição da imagem" 
-    className="my-2 mx-auto hidden mb-10 lg:block" // Adicionando mx-auto para centralizar e ocultar em telas pequenas
-    width={200}
-    height={60}
-  />
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 text-left">
+        {/* Diagnóstico ESG */}
+        <a
+          href="https://wa.me/5599999999999?text=Olá! Gostaria de saber mais sobre o Diagnóstico ESG da minha empresa."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition flex items-center gap-6 min-h-[140px] cursor-pointer"
+        >
+          <div>
+            <h3 className="text-lg font-semibold text-green-900 mb-1">Diagnóstico ESG</h3>
+            <p className="text-gray-600 text-sm">
+              Descubra o nível de maturidade ESG da sua empresa em minutos.
+            </p>
+          </div>
+        </a>
 
-    <input
-      type="text"
-      placeholder="Digite seu nome"
-      value={nome}
-      onChange={(e) => setNome(e.target.value)}
-      className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
-    />
-          <input
+        {/* Gestão Documental */}
+        <a
+          href="https://wa.me/5599999999999?text=Olá! Tenho interesse em saber mais sobre as soluções de Gestão Documental."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition flex items-center gap-6 min-h-[140px] cursor-pointer"
+        >
+          <div>
+            <h3 className="text-lg font-semibold text-green-900 mb-1">Gestão Documental</h3>
+            <p className="text-gray-600 text-sm">
+              Transforme a organização de documentos em vantagem competitiva ESG.
+            </p>
+          </div>
+        </a>
+
+        {/* Soluções Ambientais */}
+        <a
+          href="https://wa.me/5599999999999?text=Olá! Gostaria de conversar sobre as Soluções Ambientais que vocês oferecem."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition flex items-center gap-6 min-h-[140px] cursor-pointer"
+        >
+          <div>
+            <h3 className="text-lg font-semibold text-green-900 mb-1">Soluções Ambientais</h3>
+            <p className="text-gray-600 text-sm">
+              Consultoria estratégica para atender às exigências ambientais com eficiência.
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {/* Lado Direito - Formulário com sombra e responsividade */}
+  <div className="w-full lg:w-1/2 bg-white rounded-xl shadow-xl p-6 md:p-10">
+    <div className="text-center">
+      <p className="text-lg md:text-xl text-gray-600 mb-5 font-light">
+        Antes de qualquer passo,
+      </p>
+      <p className="text-2xl text-green-900 font-semibold mb-5 mt-1">
+        Que tal fazer um autodiagnóstico express?
+      </p>
+      <p className="text-sm md:text-base text-gray-500 mb-10 mt-3">
+        Em menos de 5 minutos, você pode entender como se encontra a sua empresa e descobrir pontos que impactam diretamente nos seus indicadores ESG.
+      </p>
+    </div>
+
+    <div className="flex flex-col gap-4">
+      <input
+        type="text"
+        placeholder="Digite seu nome"
+        value={nome}
+        onChange={(e) => setNome(e.target.value)}
+        className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+      />
+      <input
         type="text"
         placeholder="Nome da Empresa"
         value={empresa}
-        onChange={(e) => {
-          setEmpresa(e.target.value);
-          console.log(empresa); // Verifique o valor do input
-        }}
-        className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+        onChange={(e) => setEmpresa(e.target.value)}
+        className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
       />
-    <input
-      type="email"
-      placeholder="Digite seu e-mail"
-      value={email}
-      onChange={(e) => setEmail(e.target.value)}
-      className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
-    />
-    <input
-      type="tel"
-      placeholder="Digite seu telefone"
-      value={telefone}
-      onChange={(e) => setTelefone(e.target.value)}
-      className="w-full border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 mb-7"
-    />
+      <input
+        type="email"
+        placeholder="Digite seu e-mail"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+      />
+      <input
+        type="tel"
+        placeholder="Digite seu telefone"
+        value={telefone}
+        onChange={(e) => setTelefone(e.target.value)}
+        className="w-full border border-gray-300 px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+      />
 
-
-{/* Botão separado da caixa */}
-<button
-  onClick={handleSubmit}
-  disabled={isDisabled || loading}
-  className={`px-20 py-3 mt-4 mb-10 rounded-md text-white ${
-    isDisabled ? "bg-gray-400 cursor-not-allowed" : "bg-green-800 hover:bg-green-900"
-  }`}
->
-  {loading ? "Enviando..." : "Iniciar Diagnóstico"}
-</button>
+      <button
+        onClick={handleSubmit}
+        disabled={isDisabled || loading}
+        className={`w-full py-3 mt-6 rounded-md text-white text-lg font-medium transition ${
+          isDisabled ? "bg-gray-400 cursor-not-allowed" : "bg-green-800 hover:bg-green-900"
+        }`}
+      >
+        {loading ? "Enviando..." : "Iniciar Diagnóstico Express"}
+      </button>
     </div>
-
   </div>
-
-
 </div>
+
+
+
+
+
+      <a
+  href="https://wa.me/5511999999999" // coloque seu número aqui
+  target="_blank"
+  rel="noopener noreferrer"
+  className="fixed bottom-4 right-4 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300"
+>
+  <svg
+    className="w-8 h-9"
+    fill="currentColor"
+    viewBox="0 0 24 24"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M20.52 3.48A11.938 11.938 0 0012.003 0C5.374 0 .007 5.367 0 12c0 2.114.555 4.173 1.607 5.993L0 24l6.15-1.607A11.94 11.94 0 0012.003 24C18.627 24 24 18.627 24 12c0-3.192-1.247-6.192-3.48-8.52zM12.003 21.82c-1.797 0-3.565-.49-5.107-1.41l-.364-.217-3.649.955.973-3.554-.237-.373C2.488 15.108 2 13.568 2 12c0-5.522 4.48-10.003 10.003-10.003 2.671 0 5.184 1.038 7.07 2.922 1.886 1.885 2.922 4.398 2.922 7.07 0 5.522-4.48 10.003-10.003 10.003zm5.316-7.444l-1.512-.762c-.203-.102-.44-.156-.673-.102-.2.049-.497.24-.683.444-.155.174-.273.38-.384.586-.138.26-.283.297-.517.198l-.187-.089a8.94 8.94 0 01-2.257-1.71 8.91 8.91 0 01-1.706-2.254c-.092-.178-.064-.38.096-.508.203-.174.406-.352.582-.544.19-.208.38-.41.557-.621.08-.096.146-.205.194-.32.089-.21.049-.426-.102-.624l-.76-1.507c-.133-.263-.282-.363-.522-.372l-.182-.008c-.45 0-.895.233-1.148.608-.275.405-.55.806-.818 1.213-.37.554-.542 1.163-.493 1.798.048.674.287 1.334.61 1.925.417.748.942 1.44 1.526 2.077.94 1.027 2.015 1.92 3.267 2.57.826.423 1.72.715 2.626.812.715.077 1.385-.077 1.956-.538.397-.319.79-.648 1.165-.994.313-.292.367-.715.185-1.13z"
+    />
+  </svg>
+</a>
+    </div>
+    
 
   );
 }

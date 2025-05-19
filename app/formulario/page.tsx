@@ -373,7 +373,7 @@ const generateReport = async (answers: string[], questions: { question: string }
             <img
               src={welcomeImage}
               alt="Imagem de boas-vindas do grupo"
-              className="max-w-full h-auto object-contain mb-6"
+              className="w-72 h-72 object-cover rounded-full mb-6"
             />
             <button
               onClick={handleNext}
