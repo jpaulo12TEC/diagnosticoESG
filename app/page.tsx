@@ -156,7 +156,12 @@ className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  
 <Header /> {/* Usando o Header */}
 
 {showIntro && (
+
+  
   <div className="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center p-4 animate-fade-in">
+        {/* Botão de fechar (X) fixo no topo direito */}
+    {/* Ícone de fechar - canto superior esquerdo, fora do modal */}
+
     <div className="bg-white w-full max-w-4xl rounded-3xl shadow-2xl grid md:grid-cols-2 overflow-hidden relative">
 
       {/* Lado esquerdo: texto promocional ESG */}
@@ -172,20 +177,33 @@ className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  
         </p>
       </div>
 
-      {/* Lado direito: botão de ação */}
-      <div className="bg-emerald-800 p-10 flex flex-col items-center justify-center text-center text-white">
-        <h3 className="text-xl font-semibold mb-6">Vamos conversar?</h3>
-        <a
-          href="https://wa.me/5599999999999?text=Olá!%20Tenho%20interesse%20em%20melhorar%20meu%20índice%20ESG%20com%20gestão%20documental."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-3 bg-white text-emerald-800 px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-100 transition"
-          onClick={() => setShowIntro(false)}
-        >
-          <img src="/whatsapp-icon.svg" alt="WhatsApp" className="w-6 h-6" />
-          Falar no WhatsApp
-        </a>
-      </div>
+      {/* Lado direito: imagem de fundo com botão */}
+<div
+  className="relative p-10 flex flex-col items-center justify-center text-center text-white bg-cover bg-center"
+  style={{ backgroundImage: "url('/People.jpg')" }}
+>
+  {/* Outros conteúdos podem ficar aqui */}
+
+  <a
+    href="https://wa.me/55799998870125?text=Olá!%20Tenho%20interesse%20em%20melhorar%20meu%20índice%20ESG%20com%20gestão%20documental."
+    target="_blank"
+    rel="noopener noreferrer"
+    className="absolute bottom-6 flex items-center gap-3 bg-white text-emerald-800 px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-100 transition"
+  >
+    <svg
+      className="w-8 h-9"
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+      d="M20.52 3.48A11.938 11.938 0 0012.003 0C5.374 0 .007 5.367 0 12c0 2.114.555 4.173 1.607 5.993L0 24l6.15-1.607A11.94 11.94 0 0012.003 24C18.627 24 24 18.627 24 12c0-3.192-1.247-6.192-3.48-8.52zM12.003 21.82c-1.797 0-3.565-.49-5.107-1.41l-.364-.217-3.649.955.973-3.554-.237-.373C2.488 15.108 2 13.568 2 12c0-5.522 4.48-10.003 10.003-10.003 2.671 0 5.184 1.038 7.07 2.922 1.886 1.885 2.922 4.398 2.922 7.07 0 5.522-4.48 10.003-10.003 10.003zm5.316-7.444l-1.512-.762c-.203-.102-.44-.156-.673-.102-.2.049-.497.24-.683.444-.155.174-.273.38-.384.586-.138.26-.283.297-.517.198l-.187-.089a8.94 8.94 0 01-2.257-1.71 8.91 8.91 0 01-1.706-2.254c-.092-.178-.064-.38.096-.508.203-.174.406-.352.582-.544.19-.208.38-.41.557-.621.08-.096.146-.205.194-.32.089-.21.049-.426-.102-.624l-.76-1.507c-.133-.263-.282-.363-.522-.372l-.182-.008c-.45 0-.895.233-1.148.608-.275.405-.55.806-.818 1.213-.37.554-.542 1.163-.493 1.798.048.674.287 1.334.61 1.925.417.748.942 1.44 1.526 2.077.94 1.027 2.015 1.92 3.267 2.57.826.423 1.72.715 2.626.812.715.077 1.385-.077 1.956-.538.397-.319.79-.648 1.165-.994.313-.292.367-.715.185-1.13z"
+    />
+    </svg>
+    Falar no WhatsApp
+  </a>
+</div>
+
 
       {/* Botão de fechar flutuante */}
       <button
@@ -198,6 +216,7 @@ className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  
     </div>
   </div>
 )}
+
 
 
 
@@ -229,7 +248,7 @@ className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 text-left">
         {/* Diagnóstico ESG */}
         <a
-          href="https://wa.me/5599999999999?text=Olá! Gostaria de saber mais sobre o Diagnóstico ESG da minha empresa."
+          href="https://wa.me/55799998870125?text=Olá! Gostaria de saber mais sobre o Diagnóstico ESG da minha empresa."
           target="_blank"
           rel="noopener noreferrer"
           className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition flex items-center gap-6 min-h-[140px] cursor-pointer"
@@ -244,7 +263,7 @@ className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  
 
         {/* Gestão Documental */}
         <a
-          href="https://wa.me/5599999999999?text=Olá! Tenho interesse em saber mais sobre as soluções de Gestão Documental."
+          href="https://wa.me/55799998870125?text=Olá! Tenho interesse em saber mais sobre as soluções de Gestão Documental."
           target="_blank"
           rel="noopener noreferrer"
           className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition flex items-center gap-6 min-h-[140px] cursor-pointer"
@@ -259,7 +278,7 @@ className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  
 
         {/* Soluções Ambientais */}
         <a
-          href="https://wa.me/5599999999999?text=Olá! Gostaria de conversar sobre as Soluções Ambientais que vocês oferecem."
+          href="https://wa.me/55799998870125?text=Olá! Gostaria de conversar sobre as Soluções Ambientais que vocês oferecem."
           target="_blank"
           rel="noopener noreferrer"
           className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition flex items-center gap-6 min-h-[140px] cursor-pointer"
@@ -337,7 +356,7 @@ className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  
 
 
       <a
-  href="https://wa.me/5511999999999" // coloque seu número aqui
+  href="https://wa.me/55799998870125" // coloque seu número aqui
   target="_blank"
   rel="noopener noreferrer"
   className="fixed bottom-4 right-4 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300"
