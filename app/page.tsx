@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import emailjs from "emailjs-com"; // Importando a biblioteca
 import Header from "../components/Header"; // Importando o Header
+import { motion } from "framer-motion";
 
 
     // Evitar que localStorage seja acessado fora do ambiente do cliente
@@ -156,13 +157,33 @@ className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  
 <Header /> {/* Usando o Header */}
 
 {showIntro && (
+  <div
+    className="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center p-4 animate-fade-in"
+    onClick={() => setShowIntro(false)} // Fecha ao clicar fora
+  >
+    
+    <div className="bg-opacity-60 flex relative items-center justify-center rounded-3xl p-10 animate-fade-in">
 
-  
-  <div className="fixed inset-0 bg-black bg-opacity-60 z-50 flex items-center justify-center p-4 animate-fade-in">
-        {/* Botão de fechar (X) fixo no topo direito */}
-    {/* Ícone de fechar - canto superior esquerdo, fora do modal */}
+            {/* Botão de fechar dentro do modal */}
+      <div className="absolute top-1 right-1 z-10">
+        <button
+          onClick={() => setShowIntro(false)}
+          className="text-black bg-white hover:bg-red-700 hover:text-white rounded-full w-8 h-8 flex items-center justify-center text-xl shadow"
+          aria-label="Fechar"
+        >
+          &times;
+        </button>
+      </div>
 
-    <div className="bg-white w-full max-w-4xl rounded-3xl shadow-2xl grid md:grid-cols-2 overflow-hidden relative">
+
+
+    {/* Modal principal */}
+          <div
+        className="bg-white w-full max-w-4xl rounded-3xl shadow-2xl grid md:grid-cols-2 overflow-hidden relative"
+        onClick={(e) => e.stopPropagation()} // Evita fechar ao clicar dentro
+      >
+
+
 
       {/* Lado esquerdo: texto promocional ESG */}
       <div className="bg-gradient-to-br from-emerald-100 via-white to-white p-10 flex flex-col justify-center">
@@ -176,46 +197,31 @@ className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  
           Converse com um especialista e descubra como sua empresa pode avançar.
         </p>
       </div>
-
+      
       {/* Lado direito: imagem de fundo com botão */}
-<div
-  className="relative p-10 flex flex-col items-center justify-center text-center text-white bg-cover bg-center"
-  style={{ backgroundImage: "url('/People.jpg')" }}
->
-  {/* Outros conteúdos podem ficar aqui */}
-
-  <a
-    href="https://wa.me/55799998870125?text=Olá!%20Tenho%20interesse%20em%20melhorar%20meu%20índice%20ESG%20com%20gestão%20documental."
-    target="_blank"
-    rel="noopener noreferrer"
-    className="absolute bottom-6 flex items-center gap-3 bg-white text-emerald-800 px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-100 transition"
-  >
-    <svg
-      className="w-8 h-9"
-      fill="currentColor"
-      viewBox="0 0 24 24"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-      d="M20.52 3.48A11.938 11.938 0 0012.003 0C5.374 0 .007 5.367 0 12c0 2.114.555 4.173 1.607 5.993L0 24l6.15-1.607A11.94 11.94 0 0012.003 24C18.627 24 24 18.627 24 12c0-3.192-1.247-6.192-3.48-8.52zM12.003 21.82c-1.797 0-3.565-.49-5.107-1.41l-.364-.217-3.649.955.973-3.554-.237-.373C2.488 15.108 2 13.568 2 12c0-5.522 4.48-10.003 10.003-10.003 2.671 0 5.184 1.038 7.07 2.922 1.886 1.885 2.922 4.398 2.922 7.07 0 5.522-4.48 10.003-10.003 10.003zm5.316-7.444l-1.512-.762c-.203-.102-.44-.156-.673-.102-.2.049-.497.24-.683.444-.155.174-.273.38-.384.586-.138.26-.283.297-.517.198l-.187-.089a8.94 8.94 0 01-2.257-1.71 8.91 8.91 0 01-1.706-2.254c-.092-.178-.064-.38.096-.508.203-.174.406-.352.582-.544.19-.208.38-.41.557-.621.08-.096.146-.205.194-.32.089-.21.049-.426-.102-.624l-.76-1.507c-.133-.263-.282-.363-.522-.372l-.182-.008c-.45 0-.895.233-1.148.608-.275.405-.55.806-.818 1.213-.37.554-.542 1.163-.493 1.798.048.674.287 1.334.61 1.925.417.748.942 1.44 1.526 2.077.94 1.027 2.015 1.92 3.267 2.57.826.423 1.72.715 2.626.812.715.077 1.385-.077 1.956-.538.397-.319.79-.648 1.165-.994.313-.292.367-.715.185-1.13z"
-    />
-    </svg>
-    Falar no WhatsApp
-  </a>
-</div>
-
-
-      {/* Botão de fechar flutuante */}
-      <button
-        onClick={() => setShowIntro(false)}
-        className="absolute top-3 right-3 text-gray-500 hover:text-red-600 text-3xl font-light"
-        aria-label="Fechar"
+      <div
+        className="relative p-10 flex flex-col items-center justify-center text-center text-white bg-cover bg-center"
+        style={{ backgroundImage: "url('/People.jpg')" }}
       >
-        &times;
-      </button>
+        <a
+          href="https://wa.me/55799998870125?text=Olá!%20Tenho%20interesse%20em%20melhorar%20meu%20índice%20ESG%20com%20gestão%20documental."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute bottom-6 flex items-center gap-3 bg-white text-emerald-800 px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-100 transition"
+        >
+          <svg className="w-8 h-9" fill="currentColor" viewBox="0 0 24 24">
+            <path
+              d="M20.52 3.48A11.938 11.938 0 0012.003 0C5.374 0 .007 5.367 0 12c0 2.114.555 4.173 1.607 5.993L0 24l6.15-1.607A11.94 11.94 0 0012.003 24C18.627 24 24 18.627 24 12c0-3.192-1.247-6.192-3.48-8.52zM12.003 21.82c-1.797 0-3.565-.49-5.107-1.41l-.364-.217-3.649.955.973-3.554-.237-.373C2.488 15.108 2 13.568 2 12c0-5.522 4.48-10.003 10.003-10.003 2.671 0 5.184 1.038 7.07 2.922 1.886 1.885 2.922 4.398 2.922 7.07 0 5.522-4.48 10.003-10.003 10.003zm5.316-7.444l-1.512-.762c-.203-.102-.44-.156-.673-.102-.2.049-.497.24-.683.444-.155.174-.273.38-.384.586-.138.26-.283.297-.517.198l-.187-.089a8.94 8.94 0 01-2.257-1.71 8.91 8.91 0 01-1.706-2.254c-.092-.178-.064-.38.096-.508.203-.174.406-.352.582-.544.19-.208.38-.41.557-.621.08-.096.146-.205.194-.32.089-.21.049-.426-.102-.624l-.76-1.507c-.133-.263-.282-.363-.522-.372l-.182-.008c-.45 0-.895.233-1.148.608-.275.405-.55.806-.818 1.213-.37.554-.542 1.163-.493 1.798.048.674.287 1.334.61 1.925.417.748.942 1.44 1.526 2.077.94 1.027 2.015 1.92 3.267 2.57.826.423 1.72.715 2.626.812.715.077 1.385-.077 1.956-.538.397-.319.79-.648 1.165-.994.313-.292.367-.715.185-1.13z"
+            />
+          </svg>
+          Falar no WhatsApp
+        </a>
+      </div>
+    </div>
     </div>
   </div>
 )}
+
 
 
 
@@ -236,62 +242,91 @@ className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  
   </p>
 
     {/* Serviços */}
-    <div className="w-full mt-10 p-6">
-      <div className="flex items-center mb-8">
-        <div className="flex-grow h-px bg-gray-300"></div>
-        <h2 className="px-4 text-2xl font-semibold text-gray-700 whitespace-nowrap">
-          Nossos serviços
-        </h2>
-        <div className="flex-grow h-px bg-gray-300"></div>
+
+{/* Serviços */}
+<div className="w-full mt-10 p-6">
+  <div className="flex items-center mb-8">
+    <div className="flex-grow h-px bg-gray-300"></div>
+    <h2 className="px-4 text-2xl font-semibold text-gray-700 whitespace-nowrap">
+      Nossos serviços
+    </h2>
+    <div className="flex-grow h-px bg-gray-300"></div>
+  </div>
+
+  <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 text-left">
+    {/* Diagnóstico ESG - 1/4 */}
+    <a
+      href="https://wa.me/55799998870125?text=Olá! Gostaria de saber mais sobre o Diagnóstico ESG da minha empresa."
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-white rounded-xl shadow p-6 hover:shadow-md transition flex items-center gap-4 min-h-[120px] cursor-pointer scale-95 opacity-80 hover:opacity-100 col-span-1"
+    >
+      <div>
+        <h3 className="text-base font-semibold text-green-900 mb-1">Diagnóstico ESG</h3>
+        <p className="text-gray-600 text-xs">
+          Descubra o nível de maturidade ESG da sua empresa e se adeque as novas realidades do mercado.
+        </p>
       </div>
+    </a>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 text-left">
-        {/* Diagnóstico ESG */}
-        <a
-          href="https://wa.me/55799998870125?text=Olá! Gostaria de saber mais sobre o Diagnóstico ESG da minha empresa."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition flex items-center gap-6 min-h-[140px] cursor-pointer"
-        >
-          <div>
-            <h3 className="text-lg font-semibold text-green-900 mb-1">Diagnóstico ESG</h3>
-            <p className="text-gray-600 text-sm">
-              Descubra o nível de maturidade ESG da sua empresa em minutos.
-            </p>
-          </div>
-        </a>
+    {/* Gestão Documental - 2/4 */}
+    <a
+      href="https://wa.me/55799998870125?text=Olá! Tenho interesse em saber mais sobre as soluções de Gestão Documental."
+      target="_blank"
+      rel="noopener noreferrer"
+      className="relative bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition transform hover:scale-[1.03] flex items-center gap-6 min-h-[200px] cursor-pointer overflow-hidden col-span-1 lg:col-span-2"
+    >
+      {/* Faixa de fundo sutil */}
+      <div className="absolute inset-0 bg-gradient-to-br from-transparent via-emerald-100 to-emerald-200 rotate-2 scale-150 z-0"></div>
 
-        {/* Gestão Documental */}
-        <a
-          href="https://wa.me/55799998870125?text=Olá! Tenho interesse em saber mais sobre as soluções de Gestão Documental."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition flex items-center gap-6 min-h-[140px] cursor-pointer"
-        >
-          <div>
-            <h3 className="text-lg font-semibold text-green-900 mb-1">Gestão Documental</h3>
-            <p className="text-gray-600 text-sm">
-              Transforme a organização de documentos em vantagem competitiva ESG.
-            </p>
-          </div>
-        </a>
+      {/* Selo PNG no canto superior direito */}
+<img
+  src="/Selo.png"
+  alt="Selo"
+  className="absolute top-0 right-0 w-10 h-10 z-10"
+/>
 
-        {/* Soluções Ambientais */}
-        <a
-          href="https://wa.me/55799998870125?text=Olá! Gostaria de conversar sobre as Soluções Ambientais que vocês oferecem."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition flex items-center gap-6 min-h-[140px] cursor-pointer"
-        >
-          <div>
-            <h3 className="text-lg font-semibold text-green-900 mb-1">Soluções Ambientais</h3>
-            <p className="text-gray-600 text-sm">
-              Consultoria estratégica para atender às exigências ambientais com eficiência.
-            </p>
-          </div>
-        </a>
+      {/* Selo: + Procurado */}
+      <motion.div
+        initial={{ y: -10, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.4, delay: 0.2 }}
+        className="absolute top-2 left-2 z-10 bg-emerald-600 text-white mb-2 text-[10px] px-2 py-0.5 rounded-full shadow-sm font-semibold tracking-wider"
+      >
+        Recomendado
+      </motion.div>
+
+      {/* Conteúdo principal */}
+      <div className="relative z-10">
+        <h3 className="text-xl font-semibold text-green-900 mt-3 mb-3">Gestão Documental</h3>
+        <ul className="list-disc list-inside text-gray-700 text-xs space-y-1">
+          <li>Conformidade com portais corporativos</li>
+          <li>Atendimento a requisitos de grandes contratantes</li>
+          <li>Evite bloqueios e atrasos contratuais</li>
+          <li>Atualização contínua de documentos</li>
+          <li>Facilitamos sua aprovação em portais de fornecedores</li>
+        </ul>
       </div>
-    </div>
+    </a>
+
+    {/* Soluções Ambientais - 1/4 */}
+    <a
+      href="https://wa.me/55799998870125?text=Olá! Gostaria de conversar sobre as Soluções Ambientais que vocês oferecem."
+      target="_blank"
+      rel="noopener noreferrer"
+      className="bg-white rounded-xl shadow p-4 hover:shadow-md transition flex items-center gap-4 min-h-[120px] cursor-pointer scale-95 opacity-80 hover:opacity-100 col-span-1"
+    >
+      <div>
+        <h3 className="text-base font-semibold text-green-900 mb-1">Soluções Ambientais</h3>
+        <p className="text-gray-600 text-xs">
+          Consultoria estratégica para atender às exigências ambientais com eficiência.
+        </p>
+      </div>
+    </a>
+  </div>
+</div>
+
+
   </div>
 
   {/* Lado Direito - Formulário com sombra e responsividade */}
@@ -373,6 +408,7 @@ className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  
   </svg>
 </a>
     </div>
+    
     
 
   );
