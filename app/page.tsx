@@ -4,7 +4,10 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import emailjs from "emailjs-com"; // Importando a biblioteca
 import Header from "../components/Header"; // Importando o Header
-import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/autoplay";
+import { Autoplay } from "swiper/modules";
 
 
     // Evitar que localStorage seja acessado fora do ambiente do cliente
@@ -22,9 +25,18 @@ export default function Home() {
   const router = useRouter();
   const [showIntro, setShowIntro] = useState(true);
   
+   const logos = [
+    "/ENEVA.png",
+    "/GE.png",
+    "/Nacionalgas",
+    "/Vibra.png",
+    "/Mosaic.svg",
+  ];
 
 
-
+  const handleClick = () => {
+    router.push("/nosso-case");
+  };
 
   // ✅ Recupera a empresa apenas quando o componente é montado (evita erro no Next.js)
   useEffect(() => {
@@ -126,14 +138,27 @@ export default function Home() {
     },
   ];
 
-  const [indiceAtual, setIndiceAtual] = useState(0);
-
-const mudarSlide = (index: number) => {
-  setIndiceAtual(index);
-};
 
 
 
+  const [name, setName] = useState('');
+  const [company, setCompany] = useState('');
+
+  const handleSubmiti = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    // Mensagem formatada
+    const message = `Olá, meu nome é ${name} e sou da empresa ${company}. Acabei de fazer o Autodiagnósitco ESG Express. Quais os próximos passos?`;
+
+    // Codificar a mensagem para garantir que espaços e caracteres especiais funcionem na URL
+    const encodedMessage = encodeURIComponent(message);
+
+    // Construção do link para WhatsApp com a mensagem codificada
+    const whatsappLink = `https://wa.me/5579998092012?text=${encodedMessage}`;
+
+    // Redirecionar para o WhatsApp
+    window.open(whatsappLink, '_blank');
+  };
 
 
 
@@ -204,7 +229,7 @@ className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  
         style={{ backgroundImage: "url('/People.jpg')" }}
       >
         <a
-          href="https://wa.me/55799998870125?text=Olá!%20Tenho%20interesse%20em%20melhorar%20meu%20índice%20ESG%20com%20gestão%20documental."
+          href="https://wa.me/5579998870125?text=Olá!%20Tenho%20interesse%20em%20melhorar%20meu%20índice%20ESG%20com%20gestão%20documental."
           target="_blank"
           rel="noopener noreferrer"
           className="absolute bottom-6 flex items-center gap-3 bg-white text-emerald-800 px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-100 transition"
@@ -227,10 +252,10 @@ className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  
 
 
 {/* Container Principal */}
-{/* Container Principal */}
+
 <div className="flex flex-col-reverse lg:flex-row w-full max-w-[1400px] mx-auto px-4  py-20  gap-10 flex-grow-0">
   {/* Lado Esquerdo - Texto e Serviços */}
-  <div className="lg:w-1/2 mt-20">
+  <div className="lg:w-3/4 mt-20">
   <h1 className="text-3xl tracking-wide sm:text-4xl lg:text-5xl font-montserrat font-normal text-green-900 leading-tight tracking-wider">
     12TEC Solutions  oferece <br />
     <span className="font-black">Consultoria</span> avançada, <br />
@@ -241,8 +266,7 @@ className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  
     Guiando decisões inteligentes para um futuro de sucesso e crescimento empresarial
   </p>
 
-    {/* Serviços */}
-
+   
 {/* Serviços */}
 <div className="w-full mt-10 p-6">
   <div className="flex items-center mb-8">
@@ -256,7 +280,7 @@ className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  
   <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 text-left">
     {/* Diagnóstico ESG - 1/4 */}
     <a
-      href="https://wa.me/55799998870125?text=Olá! Gostaria de saber mais sobre o Diagnóstico ESG da minha empresa."
+      href="https://wa.me/5579998870125?text=Olá! Gostaria de saber mais sobre o Diagnóstico ESG da minha empresa."
       target="_blank"
       rel="noopener noreferrer"
       className="bg-white rounded-xl shadow p-6 hover:shadow-md transition flex items-center gap-4 min-h-[120px] cursor-pointer scale-95 opacity-80 hover:opacity-100 col-span-1"
@@ -270,35 +294,30 @@ className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  
     </a>
 
     {/* Gestão Documental - 2/4 */}
-    <a
-      href="https://wa.me/55799998870125?text=Olá! Tenho interesse em saber mais sobre as soluções de Gestão Documental."
-      target="_blank"
-      rel="noopener noreferrer"
+    <div
+      onClick={handleClick}
       className="relative bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition transform hover:scale-[1.03] flex items-center gap-6 min-h-[200px] cursor-pointer overflow-hidden col-span-1 lg:col-span-2"
     >
       {/* Faixa de fundo sutil */}
       <div className="absolute inset-0 bg-gradient-to-br from-transparent via-emerald-100 to-emerald-200 rotate-2 scale-150 z-0"></div>
 
       {/* Selo PNG no canto superior direito */}
-<img
-  src="/Selo.png"
-  alt="Selo"
-  className="absolute top-0 right-0 w-10 h-10 z-10"
-/>
+      <img
+        src="/Selo.png"
+        alt="Selo"
+        className="absolute top-0 right-0 w-10 h-10 z-10"
+      />
 
-      {/* Selo: + Procurado */}
-      <motion.div
-        initial={{ y: -10, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.2 }}
-        className="absolute top-2 left-2 z-10 bg-emerald-600 text-white mb-2 text-[10px] px-2 py-0.5 rounded-full shadow-sm font-semibold tracking-wider"
-      >
+      {/* Selo: Recomendado */}
+      <div className="absolute top-2 left-2 z-10 bg-emerald-600 text-white mb-2 text-[10px] px-2 py-0.5 rounded-full shadow-sm font-semibold tracking-wider">
         Recomendado
-      </motion.div>
+      </div>
 
       {/* Conteúdo principal */}
       <div className="relative z-10">
-        <h3 className="text-xl font-semibold text-green-900 mt-3 mb-3">Gestão Documental</h3>
+        <h3 className="text-xl font-semibold text-green-900 mt-3 mb-3">
+          Gestão Documental
+        </h3>
         <ul className="list-disc list-inside text-gray-700 text-xs space-y-1">
           <li>Conformidade com portais corporativos</li>
           <li>Atendimento a requisitos de grandes contratantes</li>
@@ -307,11 +326,11 @@ className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  
           <li>Facilitamos sua aprovação em portais de fornecedores</li>
         </ul>
       </div>
-    </a>
+    </div>
 
     {/* Soluções Ambientais - 1/4 */}
     <a
-      href="https://wa.me/55799998870125?text=Olá! Gostaria de conversar sobre as Soluções Ambientais que vocês oferecem."
+      href="https://wa.me/5579998870125?text=Olá! Gostaria de conversar sobre as Soluções Ambientais que vocês oferecem."
       target="_blank"
       rel="noopener noreferrer"
       className="bg-white rounded-xl shadow p-4 hover:shadow-md transition flex items-center gap-4 min-h-[120px] cursor-pointer scale-95 opacity-80 hover:opacity-100 col-span-1"
@@ -386,8 +405,107 @@ className="min-h-screen bg-gradient-to-br from-gray-300 via-white to-green-100  
   </div>
 </div>
 
+<div className="w-full py-20 shadow-sm border-t border-neutral-300 border-b border-neutral-200">
+  <h2 className="text-center mb-20 text-xl md:text-2xl font-semibold mb-8 text-neutral-700">
+    Clientes que já contam com nossa documentação disponibilizada em seus portais
+  </h2>
+  
+  <Swiper
+    modules={[Autoplay]}
+    spaceBetween={30}
+    slidesPerView={4}
+    autoplay={{ delay: 3000, disableOnInteraction: false }}
+    loop={true}
+    breakpoints={{
+      320: { slidesPerView: 2, spaceBetween: 40 },
+      640: { slidesPerView: 3, spaceBetween: 20 },
+      1024: { slidesPerView: 4, spaceBetween: 30 },
+    }}
+  >
+    {logos.map((logo, idx) => (
+      <SwiperSlide key={idx}>
+        <img
+          src={logo}
+          alt={`Logo ${idx}`}
+          className="h-20 mb-20 mx-auto "
+        />
+      </SwiperSlide>
+    ))}
+  </Swiper>
+</div>
 
 
+<div className="w-full flex justify-center items-center text-gray-800 g-10 px-1 sm:px-10 ">
+ 
+<div id="consultor" className="w-[1500px] h-auto sm:flex flex-col sm:flex-row justify-content g-10 sm:p-10 p-2 text-left sm:space-x-10 space-y-4 sm:space-y-0">
+    
+    
+    {/* Div esquerda */}
+
+
+    <div className="w-full sm:w-2/5 justify-between  p-0 sm:p-10 mx-auto sm:ml-20">
+  <h2 className="text-4xl font-bold font-montserrat text-green-900 leading-tight  mb-10 text-center sm:text-left">
+    Reduza os riscos e maximize os lucros.
+  </h2>
+  <p className="mb-10 sm:mb-4 items-center font-montserrat text-2xl text-center sm:text-left">
+    Conte com nossa Consultoria ESG para realizar o diagnóstico, planejamento estratégico, implantação, monitoramento e relatório de sustentabilidade.
+  </p>
+</div>
+
+    {/* Div direita - Formulário */}
+    <div className="w-full sm:w-2/5 p-8 sm:p-12 text-center h-full bg-white rounded-lg shadow-xl">
+  <h3 className="text-2xl font-semibold mb-8 text-gray-800 font-montserrat">Fale com nossa equipe de consultores</h3>
+  <form onSubmit={handleSubmiti} className="flex flex-col items-center justify-center space-y-6">
+    <div className="w-full max-w-md">
+      <input 
+        type="text" 
+        id="name" 
+        name="name" 
+        className="w-full p-4 rounded-md border-2 border-gray-300 bg-gray-50 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all"
+        placeholder="Seu nome completo"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        required 
+      />
+    </div>
+    <div className="w-full max-w-md">
+      <input 
+        type="text" 
+        id="company" 
+        name="company" 
+        className="w-full p-4 rounded-md border-2 border-gray-300 bg-gray-50 text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all"
+        placeholder="Nome da sua empresa"
+        value={company}
+        onChange={(e) => setCompany(e.target.value)}
+        required 
+      />
+    </div>
+    <div className="text-center mt-6 w-full max-w-md">
+      <button 
+        type="submit" 
+        className="bg-gray-800 text-white py-3 px-8 rounded-full hover:bg-gray-700 transition-all duration-300 transform hover:scale-105">
+        Enviar para WhatsApp
+      </button>
+    </div>
+  </form>
+
+      
+    </div>
+    
+  </div>
+</div>
+
+
+<div className="  w-full text-gray-900 p-4 text-center mt-auto">
+ 
+    <p className="elementor-heading-title elementor-size-default">
+      Todos os direitos reservados © 12 Tec Engenharia - 2025
+    </p>
+
+
+
+
+</div>
 
 
       <a

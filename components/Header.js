@@ -44,9 +44,7 @@ return (
         <Link href="https://esg.12tec.com.br" target="_blank" className="hover:underline">
           Sobre o ESG
         </Link>
-          <Link href="https://esg.12tec.com.br" target="_blank" className="hover:underline">
-          Fale conosco
-        </Link>
+  
       </nav>
 
     </div>
